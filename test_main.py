@@ -4,7 +4,7 @@ from contextlib import nullcontext as no_exception
 class TestsTuple:        
     def test_tuple_positive():
         a = (1,2,3)
-        assert a.count() == 3
+        assert a.count(1) == 1
 
     def test_tuple_negative(): 
         a = (1,2,3)
@@ -12,10 +12,8 @@ class TestsTuple:
             a[0] = 9
         except TypeError:
             pass
-    
-    @pytest.mark.parametrize(
-        "t, x, res, exception",
-        [
+
+    @pytest.mark.parametrize('t, x, res, exception', [
             ((1,2,3,4), 3, 2, no_exception),
             ((1,1,1,1), 1, 0, no_exception),
             ((1,2,1,0), 3, 0, pytest.raises(ValueError)),
@@ -27,7 +25,6 @@ class TestsTuple:
         
 
 class TestsDict:
-
     def test_dict_positive():
         countries_and_capitals = {"Россия": "Москва",
                           "США": "Вашингтон",
